@@ -3,23 +3,29 @@ language: java
 jdk:
   - openjdk8
 
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
     - $HOME/.m2/repository
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 
 before_install:
   - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
   - export PROJECT_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
 
-install: skip
+install: true
 
-script: mvn install -Dgpg.skip=true --batch-mode --show-version --update-snapshots
+script: ./gradlew build
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
-  local_dir: ./gh-pages/
+  local_dir: ./build/gh-pages/
   on:
     branch: master
