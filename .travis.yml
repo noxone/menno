@@ -13,13 +13,9 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-before_install:
-  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-  - export PROJECT_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
-
 install: true
 
-script: ./gradlew build
+script: ./gradlew cleanBuildGithub
 
 deploy:
   provider: pages
