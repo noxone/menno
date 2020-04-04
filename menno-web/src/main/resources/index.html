@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- kotlin stuff -->
+    <script type="text/javascript" src="lib/kotlin.js"></script>
+    <script type="text/javascript" src="lib/kotlinx-html-js.js"></script>
+
+    <!-- now for our page -->
+    <link rel="stylesheet" href="menno.css">
+    <title>Regex Generator</title>
+</head>
+
+<body class="bg-dark">
+    <div class="container-fluid py-3" id="rg_mainContainer">
+        <div style="display:none" id="rg_container_cookie" class="alert alert-danger fixed-top m-2" role="alert">
+            <div class="d-flex justify-content-between rg-banner-consent">
+                <p class="m-0">This site uses cookies to improve your user experience.</p>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button id="rg_btn_cookie_reject" type="button" class="btn btn-danger">Reject</button>
+                    <button id="rg_btn_cookie_accept" type="button" class="btn btn-success">Accept</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron bg-warning">
+            <h1 class="display-4"><span id="rg-title">Menno</span></h1>
+            <p class="lead d-none d-sm-block">A game based on Pachisi</p>
+        </div>
+
+        <div class="row no-gutters bg-light mt-3 pr-4 rounded position-relative" id="me_game_panel">
+            <div class="p-4" style="background-color: red;">
+                <div class="me-game-board">
+                    <!-- blue out -->
+                    <div class="me-figure-field me-left-0 me-top-0 me-field-blue"></div>
+                    <div class="me-figure-field me-left-1 me-top-0 me-field-blue"></div>
+                    <div class="me-figure-field me-left-0 me-top-1 me-field-blue"></div>
+                    <div class="me-figure-field me-left-1 me-top-1 me-field-blue"></div>
+                    <!-- red out -->
+                    <div class="me-figure-field me-left-9 me-top-0 me-field-red"></div>
+                    <div class="me-figure-field me-left-10 me-top-0 me-field-red"></div>
+                    <div class="me-figure-field me-left-9 me-top-1 me-field-red"></div>
+                    <div class="me-figure-field me-left-10 me-top-1 me-field-red"></div>
+                    <!-- green out -->
+                    <div class="me-figure-field me-left-9 me-top-9 me-field-green"></div>
+                    <div class="me-figure-field me-left-10 me-top-9 me-field-green"></div>
+                    <div class="me-figure-field me-left-9 me-top-10 me-field-green"></div>
+                    <div class="me-figure-field me-left-10 me-top-10 me-field-green"></div>
+                    <!-- yellow out -->
+                    <div class="me-figure-field me-left-0 me-top-9 me-field-yellow"></div>
+                    <div class="me-figure-field me-left-1 me-top-9 me-field-yellow"></div>
+                    <div class="me-figure-field me-left-0 me-top-10 me-field-yellow"></div>
+                    <div class="me-figure-field me-left-1 me-top-10 me-field-yellow"></div>
+
+                    <!-- blue home -->
+                    <div class="me-figure-field me-left-1 me-top-5 me-field-blue me-field-smaller"></div>
+                    <div class="me-figure-field me-left-2 me-top-5 me-field-blue me-field-smaller"></div>
+                    <div class="me-figure-field me-left-3 me-top-5 me-field-blue me-field-smaller"></div>
+                    <div class="me-figure-field me-left-4 me-top-5 me-field-blue me-field-smaller"></div>
+                    <!-- red home -->
+                    <div class="me-figure-field me-left-5 me-top-1 me-field-red me-field-smaller"></div>
+                    <div class="me-figure-field me-left-5 me-top-2 me-field-red me-field-smaller"></div>
+                    <div class="me-figure-field me-left-5 me-top-3 me-field-red me-field-smaller"></div>
+                    <div class="me-figure-field me-left-5 me-top-4 me-field-red me-field-smaller"></div>
+                    <!-- green home -->
+                    <div class="me-figure-field me-left-9 me-top-5 me-field-green me-field-smaller"></div>
+                    <div class="me-figure-field me-left-8 me-top-5 me-field-green me-field-smaller"></div>
+                    <div class="me-figure-field me-left-7 me-top-5 me-field-green me-field-smaller"></div>
+                    <div class="me-figure-field me-left-6 me-top-5 me-field-green me-field-smaller"></div>
+                    <!-- yellow home -->
+                    <div class="me-figure-field me-left-5 me-top-9 me-field-yellow me-field-smaller"></div>
+                    <div class="me-figure-field me-left-5 me-top-8 me-field-yellow me-field-smaller"></div>
+                    <div class="me-figure-field me-left-5 me-top-7 me-field-yellow me-field-smaller"></div>
+                    <div class="me-figure-field me-left-5 me-top-6 me-field-yellow me-field-smaller"></div>
+
+                    <!-- steps -->
+                    <div class="me-figure-field me-left-0 me-top-4"></div>
+                    <div class="me-figure-field me-left-1 me-top-4"></div>
+                    <div class="me-figure-field me-left-2 me-top-4"></div>
+                    <div class="me-figure-field me-left-3 me-top-4"></div>
+                    <div class="me-figure-field me-left-4 me-top-4"></div>
+                    <div class="me-figure-field me-left-4 me-top-3"></div>
+                    <div class="me-figure-field me-left-4 me-top-2"></div>
+                    <div class="me-figure-field me-left-4 me-top-1"></div>
+                    <div class="me-figure-field me-left-4 me-top-0"></div>
+                    <div class="me-figure-field me-left-5 me-top-0"></div>
+                    <div class="me-figure-field me-left-6 me-top-0"></div>
+                    <div class="me-figure-field me-left-6 me-top-1"></div>
+                    <div class="me-figure-field me-left-6 me-top-2"></div>
+                    <div class="me-figure-field me-left-6 me-top-3"></div>
+                    <div class="me-figure-field me-left-6 me-top-4"></div>
+                    <div class="me-figure-field me-left-7 me-top-4"></div>
+                    <div class="me-figure-field me-left-8 me-top-4"></div>
+                    <div class="me-figure-field me-left-9 me-top-4"></div>
+                    <div class="me-figure-field me-left-10 me-top-4"></div>
+                    <div class="me-figure-field me-left-10 me-top-5"></div>
+                    <div class="me-figure-field me-left-10 me-top-6"></div>
+                    <div class="me-figure-field me-left-9 me-top-6"></div>
+                    <div class="me-figure-field me-left-8 me-top-6"></div>
+                    <div class="me-figure-field me-left-7 me-top-6"></div>
+                    <div class="me-figure-field me-left-6 me-top-6"></div>
+                    <div class="me-figure-field me-left-6 me-top-7"></div>
+                    <div class="me-figure-field me-left-6 me-top-8"></div>
+                    <div class="me-figure-field me-left-6 me-top-9"></div>
+                    <div class="me-figure-field me-left-6 me-top-10"></div>
+                    <div class="me-figure-field me-left-5 me-top-10"></div>
+                    <div class="me-figure-field me-left-4 me-top-10"></div>
+                    <div class="me-figure-field me-left-4 me-top-9"></div>
+                    <div class="me-figure-field me-left-4 me-top-8"></div>
+                    <div class="me-figure-field me-left-4 me-top-7"></div>
+                    <div class="me-figure-field me-left-4 me-top-6"></div>
+                    <div class="me-figure-field me-left-3 me-top-6"></div>
+                    <div class="me-figure-field me-left-2 me-top-6"></div>
+                    <div class="me-figure-field me-left-1 me-top-6"></div>
+                    <div class="me-figure-field me-left-0 me-top-6"></div>
+                    <div class="me-figure-field me-left-0 me-top-5"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer
+            class="page-footer font-small row no-gutters bg-dark text-muted border border-secondary mt-4 p-4 rounded">
+            <h5 class="text-uppercase" style="width: 100%">Menno</h5>
+            <div class="text-center text-md-left collapse show" id="footerContent">
+                <div class="row">
+                    <div class="col-md-6 mt-md-0 mt-3">
+                        <p>Some game info</p>
+                        <p>Find the project sources at <a href="https://github.com/noxone/regex-generator"
+                                target="_blank">Github</a>
+                        </p>
+                    </div>
+                    <hr class="clearfix w-100 d-md-none pb-3 border-secondary">
+                    <div class="col-md-3 mb-md-0 mb-3">
+                        <h5>Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" target="_blank">Link</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-md-0 mb-3">
+                        <h5>More links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" target="_blank">Link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center pt-3">
+                &copy; 2020 Copyright <a href="https://github.com/noxone/" target="_blank">Olaf Neumann</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- sources of regex generator -->
+    <script type="text/javascript" src="regex-generator-web.js"></script>
+
+</body>
+
+</html>

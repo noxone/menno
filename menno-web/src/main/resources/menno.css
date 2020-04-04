@@ -1,0 +1,120 @@
+
+.me-game-board {
+    font-size: 32pt;
+    width: 14em;
+    height: 14em;
+    position: relative;
+    background-color: #FFA54B;
+}
+
+.me-figure-field {
+    position: absolute;
+    border: 1.5px solid #343434;
+    width: 1em;
+    height: 1em;
+    border-radius: 1em;
+    background-color: white;
+}
+
+.me-field-smaller {
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.1em;
+    margin-top: 0.1em;
+}
+
+.me-player-blue {
+    background-color: #0074D9 !important;
+}
+.me-player-red {
+    background-color: #FF4136 !important;
+}
+.me-player-green {
+    background-color: #2ECC40 !important;
+}
+.me-player-yellow {
+    background-color: #FFDC00 !important;
+}
+
+.me-field-blue {
+    background-color: #2496fc;
+}
+.me-field-red {
+    background-color: #ff8b85;
+}
+.me-field-green {
+    background-color: #7be688;
+}
+.me-field-yellow {
+    background-color: #ffe964;
+}
+
+
+.me-left-0 {
+    left: 0em;
+}
+.me-left-1 {
+    left: 1.3em;
+}
+.me-left-2 {
+    left: 2.6em;
+}
+.me-left-3 {
+    left: 3.9em;
+}
+.me-left-4 {
+    left: 5.2em;
+}
+.me-left-5 {
+    left: 6.5em;
+}
+.me-left-6 {
+    left: 7.8em;
+}
+.me-left-7 {
+    left: 9.1em;
+}
+.me-left-8 {
+    left: 10.4em;
+}
+.me-left-9 {
+    left: 11.7em;
+}
+.me-left-10 {
+    left: 13em;
+}
+
+.me-top-0 {
+    top: 0em;
+}
+.me-top-1 {
+    top: 1.3em;
+}
+.me-top-2 {
+    top: 2.6em;
+}
+.me-top-3 {
+    top: 3.9em;
+}
+.me-top-4 {
+    top: 5.2em;
+}
+.me-top-5 {
+    top: 6.5em;
+}
+.me-top-6 {
+    top: 7.8em;
+}
+.me-top-7 {
+    top: 9.1em;
+}
+.me-top-8 {
+    top: 10.4em;
+}
+.me-top-9 {
+    top: 11.7em;
+}
+.me-top-10 {
+    top: 13em;
+}
+
