@@ -231,3 +231,20 @@ gradle-app.setting
 
 # End of https://www.gitignore.io/api/java,maven,gradle,kotlin,eclipse,intellij
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+
+# Don't add gh-pages folder (which is used for github pages deployment)
+gh-pages/
+
+# Don't add local test folder
+test/
